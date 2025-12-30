@@ -382,7 +382,7 @@
     <!-- Footer (60% cream) -->
     <footer class="bg-[#FAF9F6] border-t border-[#B8C9A8] py-8 px-4">
         <div class="max-w-6xl mx-auto text-center text-gray-600">
-            <p>&copy; 2025 Aditya Novan Firmansyah. Dibuat dengan passion</p>
+            <p>&copy; <span id="year"></span> Aditya Novan Firmansyah | Crafted with care</p>
         </div>
     </footer>
 
@@ -439,6 +439,8 @@
             section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
             observer.observe(section);
         });
+
+        document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
