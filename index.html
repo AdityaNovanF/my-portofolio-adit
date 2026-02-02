@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,30 +103,83 @@
                             </linearGradient>
                         </defs>
                     </svg>
-                    <span class="text-2xl font-bold gradient-text hidden sm:inline">My Portofolio</span>
+                    <span class="text-2xl font-bold gradient-text hidden sm:inline" data-i18n="nav.logo">My Portofolio</span>
                 </a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-[#6B8E4E] transition-colors font-medium">Home</a>
-                    <a href="#about" class="text-gray-700 hover:text-[#6B8E4E] transition-colors font-medium">About</a>
-                    <a href="#skills" class="text-gray-700 hover:text-[#6B8E4E] transition-colors font-medium">Skills</a>
-                    <a href="#projects" class="text-gray-700 hover:text-[#6B8E4E] transition-colors font-medium">Projects</a>
-                    <a href="#contact" class="text-gray-700 hover:text-[#6B8E4E] transition-colors font-medium">Contact</a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-700 hover:text-[#6B8E4E] transition-colors font-medium" data-i18n="nav.home">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-[#6B8E4E] transition-colors font-medium" data-i18n="nav.about">About</a>
+                    <a href="#skills" class="text-gray-700 hover:text-[#6B8E4E] transition-colors font-medium" data-i18n="nav.skills">Skills</a>
+                    <a href="#projects" class="text-gray-700 hover:text-[#6B8E4E] transition-colors font-medium" data-i18n="nav.projects">Projects</a>
+                    <a href="#contact" class="text-gray-700 hover:text-[#6B8E4E] transition-colors font-medium" data-i18n="nav.contact">Contact</a>
+                    
+                    <!-- Language Selector -->
+                    <div class="relative ml-4">
+                        <button id="lang-toggle" class="flex items-center gap-2 px-3 py-2 rounded-lg border-2 border-[#87A96B] hover:bg-[#E8EFE0] transition-all">
+                            <svg class="w-5 h-5 text-[#6B8E4E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                            </svg>
+                            <span id="current-lang" class="font-medium text-[#6B8E4E]">ID</span>
+                            <svg class="w-4 h-4 text-[#6B8E4E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="lang-menu" class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-xl border border-[#B8C9A8] overflow-hidden z-50">
+                            <button onclick="changeLanguage('id')" class="lang-option w-full px-4 py-2 text-left hover:bg-[#E8EFE0] transition-colors flex items-center gap-2">
+                                <span class="text-xl">🇮🇩</span>
+                                <span class="font-medium">Indonesia</span>
+                            </button>
+                            <button onclick="changeLanguage('en')" class="lang-option w-full px-4 py-2 text-left hover:bg-[#E8EFE0] transition-colors flex items-center gap-2">
+                                <span class="text-xl">🇬🇧</span>
+                                <span class="font-medium">English</span>
+                            </button>
+                            <button onclick="changeLanguage('pt')" class="lang-option w-full px-4 py-2 text-left hover:bg-[#E8EFE0] transition-colors flex items-center gap-2">
+                                <span class="text-xl">🇵🇹</span>
+                                <span class="font-medium">Português</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-gray-900">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+                <div class="flex items-center gap-3 md:hidden">
+                    <!-- Mobile Language Selector -->
+                    <button id="lang-toggle-mobile" class="text-[#6B8E4E] hover:text-[#5A7A3D] transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                        </svg>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-gray-900">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
+        <!-- Mobile Menu Navigasi -->
         <div id="mobile-menu" class="hidden md:hidden bg-[#FAF9F6] border-t border-[#B8C9A8]">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#home" class="block px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700 font-medium">Home</a>
-                <a href="#about" class="block px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700 font-medium">About</a>
-                <a href="#skills" class="block px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700 font-medium">Skills</a>
-                <a href="#projects" class="block px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700 font-medium">Projects</a>
-                <a href="#contact" class="block px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700 font-medium">Contact</a>
+                <a href="#home" class="block px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700 font-medium" data-i18n="nav.home">Home</a>
+                <a href="#about" class="block px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700 font-medium" data-i18n="nav.about">About</a>
+                <a href="#skills" class="block px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700 font-medium" data-i18n="nav.skills">Skills</a>
+                <a href="#projects" class="block px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700 font-medium" data-i18n="nav.projects">Projects</a>
+                <a href="#contact" class="block px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700 font-medium" data-i18n="nav.contact">Contact</a>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Bahasa (Terpisah) -->
+        <div id="mobile-lang-menu" class="hidden md:hidden bg-[#FAF9F6] border-t border-[#B8C9A8]">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <button onclick="changeLanguage('id')" class="flex items-center gap-3 w-full px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700">
+                    <span class="text-xl">🇮🇩</span>
+                    <span class="font-medium">Indonesia</span>
+                </button>
+                <button onclick="changeLanguage('en')" class="flex items-center gap-3 w-full px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700">
+                    <span class="text-xl">🇬🇧</span>
+                    <span class="font-medium">English</span>
+                </button>
+                <button onclick="changeLanguage('pt')" class="flex items-center gap-3 w-full px-3 py-2 hover:bg-[#E8EFE0] rounded-md transition-colors text-gray-700">
+                    <span class="text-xl">🇵🇹</span>
+                    <span class="font-medium">Português</span>
+                </button>
             </div>
         </div>
     </nav>
@@ -140,17 +193,17 @@
         <div class="max-w-4xl mx-auto text-center relative z-10">
             <div class="animate-fadeInUp">
                 <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    Hi, Saya <span class="gradient-text">Aditya Novan Firmansyah</span>
+                    <span data-i18n="hero.greeting">Hi, Saya</span> <span class="gradient-text">Aditya Novan Firmansyah</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-600 mb-8">
+                <p class="text-xl md:text-2xl text-gray-600 mb-8" data-i18n="hero.subtitle">
                     Frontend Engineer yang membuat pengalaman web indah dan interaktif
                 </p>
                 <!-- 10% Black Accent CTA Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#projects" class="px-8 py-3 bg-gray-900 text-white rounded-lg hover:shadow-2xl hover:shadow-gray-900/50 transition-all duration-300 hover:scale-105 font-semibold">
+                    <a href="#projects" class="px-8 py-3 bg-gray-900 text-white rounded-lg hover:shadow-2xl hover:shadow-gray-900/50 transition-all duration-300 hover:scale-105 font-semibold" data-i18n="hero.viewProjects">
                         Lihat Projects
                     </a>
-                    <a href="#contact" class="px-8 py-3 bg-[#FAF9F6] border-2 border-[#87A96B] text-gray-700 rounded-lg hover:bg-[#E8EFE0] hover:border-[#6B8E4E] transition-all duration-300 hover:scale-105 font-semibold">
+                    <a href="#contact" class="px-8 py-3 bg-[#FAF9F6] border-2 border-[#87A96B] text-gray-700 rounded-lg hover:bg-[#E8EFE0] hover:border-[#6B8E4E] transition-all duration-300 hover:scale-105 font-semibold" data-i18n="hero.contactMe">
                         Hubungi Saya
                     </a>
                 </div>
@@ -161,34 +214,34 @@
     <!-- About Section (30% sage background) -->
     <section id="about" class="py-20 px-4 relative bg-gradient-to-br from-[#E8EFE0] to-[#D4E2C8]">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Tentang Saya</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text" data-i18n="about.title">Tentang Saya</h2>
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6">
-                    <p class="text-lg text-gray-700 leading-relaxed">
+                    <p class="text-lg text-gray-700 leading-relaxed" data-i18n="about.description1">
                         Saya adalah seorang Frontend Engineer yang passionate dalam menciptakan pengalaman web yang menarik dan user-friendly. 
                         Dengan pengalaman dalam berbagai teknologi modern, saya selalu berusaha untuk menghadirkan solusi terbaik.
                     </p>
-                    <p class="text-lg text-gray-700 leading-relaxed">
+                    <p class="text-lg text-gray-700 leading-relaxed" data-i18n="about.description2">
                         Saya percaya bahwa design yang baik dan code yang clean adalah kunci untuk menciptakan aplikasi web yang sukses.
                     </p>
                 </div>
                 <!-- 30% sage colored cards -->
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-[#FAF9F6] p-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl border border-[#B8C9A8]">
-                        <div class="text-3xl font-bold gradient-text mb-2">1+</div>
-                        <div class="text-gray-600 font-medium">Tahun Pengalaman</div>
+                        <div class="text-3xl font-bold gradient-text mb-2">2+</div>
+                        <div class="text-gray-600 font-medium" data-i18n="about.stats.experience">Tahun Pengalaman</div>
+                    </div>
+                    <div class="bg-[#FAF9F6] p-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl border border-[#B8C9A8]">
+                        <div class="text-3xl font-bold gradient-text mb-2">15+</div>
+                        <div class="text-gray-600 font-medium" data-i18n="about.stats.projects">Projects Selesai</div>
                     </div>
                     <div class="bg-[#FAF9F6] p-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl border border-[#B8C9A8]">
                         <div class="text-3xl font-bold gradient-text mb-2">10+</div>
-                        <div class="text-gray-600 font-medium">Projects Selesai</div>
-                    </div>
-                    <div class="bg-[#FAF9F6] p-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl border border-[#B8C9A8]">
-                        <div class="text-3xl font-bold gradient-text mb-2">5+</div>
-                        <div class="text-gray-600 font-medium">Klien Puas</div>
+                        <div class="text-gray-600 font-medium" data-i18n="about.stats.clients">Klien Puas</div>
                     </div>
                     <div class="bg-[#FAF9F6] p-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl border border-[#B8C9A8]">
                         <div class="text-3xl font-bold gradient-text mb-2">100%</div>
-                        <div class="text-gray-600 font-medium">Dedikasi</div>
+                        <div class="text-gray-600 font-medium" data-i18n="about.stats.dedication">Dedikasi</div>
                     </div>
                 </div>
             </div>
@@ -198,7 +251,7 @@
     <!-- Skills Section (60% cream background) -->
     <section id="skills" class="py-20 px-4 bg-[#FAF9F6]">
         <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Skills & Teknologi</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text" data-i18n="skills.title">Skills & Teknologi</h2>
             <!-- 30% sage colored cards -->
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Frontend -->
@@ -208,7 +261,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Frontend</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800" data-i18n="skills.frontend.title">Frontend</h3>
                     <div class="space-y-3">
                         <div class="flex items-center gap-3">
                             <div class="w-2 h-2 bg-[#87A96B] rounded-full"></div>
@@ -240,7 +293,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Styling</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800" data-i18n="skills.styling.title">Styling</h3>
                     <div class="space-y-3">
                         <div class="flex items-center gap-3">
                             <div class="w-2 h-2 bg-[#87A96B] rounded-full"></div>
@@ -273,7 +326,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Tools</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800" data-i18n="skills.tools.title">Tools</h3>
                     <div class="space-y-3">
                         <div class="flex items-center gap-3">
                             <div class="w-2 h-2 bg-[#87A96B] rounded-full"></div>
@@ -304,7 +357,7 @@
     <!-- Projects Section (30% sage background) -->
     <section id="projects" class="py-20 px-4 bg-gradient-to-br from-[#E8EFE0] to-[#D4E2C8]">
         <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Projects</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text" data-i18n="projects.title">Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1: WA-Xpress -->
                 <div class="bg-[#FAF9F6] rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl border border-[#B8C9A8] group">
@@ -316,19 +369,19 @@
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                     <circle cx="10" cy="10" r="5" class="animate-pulse"/>
                                 </svg>
-                                LIVE
+                                <span data-i18n="projects.badge.live">LIVE</span>
                             </span>
                         </div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-[#6B8E4E] transition-colors">WA-Xpress</h3>
-                        <p class="text-gray-600 mb-4">Platform Marketing WhatsApp terbaik untuk meningkatkan penjualan dan engagement dengan fitur canggih konektifitas whatsapp</p>
+                        <p class="text-gray-600 mb-4" data-i18n="projects.waxpress.description">Platform Marketing WhatsApp terbaik untuk meningkatkan penjualan dan engagement dengan fitur canggih konektifitas whatsapp</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-[#E8EFE0] text-[#6B8E4E] text-sm rounded-full border border-[#B8C9A8] font-medium">Vue.js</span>
                             <span class="px-3 py-1 bg-[#E8EFE0] text-[#6B8E4E] text-sm rounded-full border border-[#B8C9A8] font-medium">WhatsApp API</span>
                             <span class="px-3 py-1 bg-[#E8EFE0] text-[#6B8E4E] text-sm rounded-full border border-[#B8C9A8] font-medium">Marketing</span>
                         </div>
-                        <a href="https://wa-xpress.com/" target="_blank" class="inline-flex items-center gap-2 text-gray-900 hover:text-gray-700 hover:underline font-semibold">
+                        <a href="https://wa-xpress.com/" target="_blank" class="inline-flex items-center gap-2 text-gray-900 hover:text-gray-700 hover:underline font-semibold" data-i18n="projects.visitWebsite">
                             Kunjungi Website 
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
@@ -347,13 +400,13 @@
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                     <circle cx="10" cy="10" r="5" class="animate-pulse"/>
                                 </svg>
-                                LIVE
+                                <span data-i18n="projects.badge.live">LIVE</span>
                             </span>
                         </div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-[#6B8E4E] transition-colors">Spanish Talking</h3>
-                        <p class="text-gray-600 mb-4">Platform pembelajaran bahasa Spanyol online dengan materi interaktif dan komprehensif untuk semua level</p>
+                        <p class="text-gray-600 mb-4" data-i18n="projects.spanishtalking.description">Platform pembelajaran bahasa Spanyol online dengan materi interaktif dan komprehensif untuk semua level</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-[#E8EFE0] text-[#6B8E4E] text-sm rounded-full border border-[#B8C9A8] font-medium">Tailwind CSS</span>
                             <span class="px-3 py-1 bg-[#E8EFE0] text-[#6B8E4E] text-sm rounded-full border border-[#B8C9A8] font-medium">Education</span>
@@ -378,20 +431,20 @@
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
                                 </svg>
-                                PRIVATE
+                                <span data-i18n="projects.badge.private">PRIVATE</span>
                             </span>
                         </div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-[#6B8E4E] transition-colors">QuickChat</h3>
-                        <p class="text-gray-600 mb-4">Platform real-time customer support yang menghubungkan customer dengan penyedia layanan secara langsung melalui chat</p>
+                        <p class="text-gray-600 mb-4" data-i18n="projects.quickchat.description">Platform real-time customer support yang menghubungkan customer dengan penyedia layanan secara langsung melalui chat</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-[#E8EFE0] text-[#6B8E4E] text-sm rounded-full border border-[#B8C9A8] font-medium">Real-time</span>
                             <span class="px-3 py-1 bg-[#E8EFE0] text-[#6B8E4E] text-sm rounded-full border border-[#B8C9A8] font-medium">WebSocket</span>
                             <span class="px-3 py-1 bg-[#E8EFE0] text-[#6B8E4E] text-sm rounded-full border border-[#B8C9A8] font-medium">Chat</span>
                             <span class="px-3 py-1 bg-[#E8EFE0] text-[#6B8E4E] text-sm rounded-full border border-[#B8C9A8] font-medium">Customer Support</span>
                         </div>
-                        <button onclick="openModal('assets/image/QuickChat.png', 'QuickChat', 'Platform real-time customer support yang menghubungkan customer dengan penyedia layanan secara langsung melalui chat')" class="inline-flex items-center gap-2 text-gray-900 hover:text-gray-700 hover:underline font-semibold cursor-pointer">
+                        <button onclick="openModal('assets/image/QuickChat.png', 'QuickChat')" class="inline-flex items-center gap-2 text-gray-900 hover:text-gray-700 hover:underline font-semibold cursor-pointer" data-i18n="projects.viewMore">
                             Lihat Selengkapnya
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -406,8 +459,8 @@
     <!-- Contact Section (60% cream background) -->
     <section id="contact" class="py-20 px-4 bg-[#FAF9F6]">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">Mari Bekerja Sama</h2>
-            <p class="text-xl text-gray-600 mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text" data-i18n="contact.title">Mari Bekerja Sama</h2>
+            <p class="text-xl text-gray-600 mb-12" data-i18n="contact.subtitle">
                 Punya project menarik? Mari diskusikan bagaimana saya bisa membantu
             </p>
             <!-- 30% sage colored cards -->
@@ -418,7 +471,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                     </div>
-                    <h3 class="font-semibold mb-2 text-gray-800">Email</h3>
+                    <h3 class="font-semibold mb-2 text-gray-800" data-i18n="contact.email.label">Email</h3>
                     <p class="text-gray-600 text-sm">adityanovanfirmansyah@gmail.com</p>
                 </a>
                 <a href="https://github.com/AdityaNovanF" target="_blank" class="bg-gradient-to-br from-[#E8EFE0] to-[#D4E2C8] p-6 rounded-2xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl border border-[#B8C9A8]">
@@ -475,13 +528,288 @@
     <!-- Footer (60% cream) -->
     <footer class="bg-[#FAF9F6] border-t border-[#B8C9A8] py-8 px-4">
         <div class="max-w-6xl mx-auto text-center text-gray-600">
-            <p>&copy; 2026 Aditya Novan Firmansyah | Crafted with care</p>
+            <p data-i18n="footer.copyright">&copy; 2026 Aditya Novan Firmansyah | Crafted with care</p>
         </div>
     </footer>
 
     <script>
+        // Translations Object
+        const translations = {
+            id: {
+                nav: {
+                    logo: 'Portofolio Saya',
+                    home: 'Home',
+                    about: 'About',
+                    skills: 'Skills',
+                    projects: 'Projects',
+                    contact: 'Contact'
+                },
+                hero: {
+                    greeting: 'Hi, Saya',
+                    subtitle: 'Frontend Engineer yang membuat pengalaman web indah dan interaktif',
+                    viewProjects: 'Lihat Projects',
+                    contactMe: 'Hubungi Saya'
+                },
+                about: {
+                    title: 'Tentang Saya',
+                    description1: 'Saya adalah seorang Frontend Engineer yang passionate dalam menciptakan pengalaman web yang menarik dan user-friendly. Dengan pengalaman dalam berbagai teknologi modern, saya selalu berusaha untuk menghadirkan solusi terbaik.',
+                    description2: 'Saya percaya bahwa design yang baik dan code yang clean adalah kunci untuk menciptakan aplikasi web yang sukses.',
+                    stats: {
+                        experience: 'Tahun Pengalaman',
+                        projects: 'Projects Selesai',
+                        clients: 'Klien Puas',
+                        dedication: 'Dedikasi'
+                    }
+                },
+                skills: {
+                    title: 'Skills & Teknologi',
+                    frontend: {
+                        title: 'Frontend'
+                    },
+                    styling: {
+                        title: 'Styling'
+                    },
+                    tools: {
+                        title: 'Tools'
+                    }
+                },
+                projects: {
+                    title: 'Projects',
+                    badge: {
+                        live: 'LIVE',
+                        private: 'PRIVAT'
+                    },
+                    waxpress: {
+                        description: 'Platform Marketing WhatsApp terbaik untuk meningkatkan penjualan dan engagement dengan fitur canggih konektifitas whatsapp'
+                    },
+                    spanishtalking: {
+                        description: 'Platform pembelajaran bahasa Spanyol online dengan materi interaktif dan komprehensif untuk semua level'
+                    },
+                    quickchat: {
+                        description: 'Platform real-time customer support yang menghubungkan customer dengan penyedia layanan secara langsung melalui chat'
+                    },
+                    visitWebsite: 'Kunjungi Website',
+                    viewMore: 'Lihat Selengkapnya'
+                },
+                contact: {
+                    title: 'Mari Bekerja Sama',
+                    subtitle: 'Punya project menarik? Mari diskusikan bagaimana saya bisa membantu',
+                    email: {
+                        label: 'Email'
+                    }
+                },
+                footer: {
+                    copyright: '© 2026 Aditya Novan Firmansyah | Dibuat dengan sepenuh hati'
+                }
+            },
+            en: {
+                nav: {
+                    logo: 'My Portfolio',
+                    home: 'Home',
+                    about: 'About',
+                    skills: 'Skills',
+                    projects: 'Projects',
+                    contact: 'Contact'
+                },
+                hero: {
+                    greeting: 'Hi, I\'m',
+                    subtitle: 'Frontend Engineer creating beautiful and interactive web experiences',
+                    viewProjects: 'View Projects',
+                    contactMe: 'Contact Me'
+                },
+                about: {
+                    title: 'About Me',
+                    description1: 'I am a Frontend Engineer passionate about creating engaging and user-friendly web experiences. With experience in various modern technologies, I always strive to deliver the best solutions.',
+                    description2: 'I believe that good design and clean code are key to creating successful web applications.',
+                    stats: {
+                        experience: 'Years Experience',
+                        projects: 'Completed Projects',
+                        clients: 'Happy Clients',
+                        dedication: 'Dedication'
+                    }
+                },
+                skills: {
+                    title: 'Skills & Technology',
+                    frontend: {
+                        title: 'Frontend'
+                    },
+                    styling: {
+                        title: 'Styling'
+                    },
+                    tools: {
+                        title: 'Tools'
+                    }
+                },
+                projects: {
+                    title: 'Projects',
+                    badge: {
+                        live: 'LIVE',
+                        private: 'PRIVATE'
+                    },
+                    waxpress: {
+                        description: 'The best WhatsApp Marketing platform to boost sales and engagement with advanced WhatsApp connectivity features'
+                    },
+                    spanishtalking: {
+                        description: 'Online Spanish learning platform with interactive and comprehensive materials for all levels'
+                    },
+                    quickchat: {
+                        description: 'Real-time customer support platform connecting customers with service providers directly through chat'
+                    },
+                    visitWebsite: 'Visit Website',
+                    viewMore: 'View More'
+                },
+                contact: {
+                    title: 'Let\'s Work Together',
+                    subtitle: 'Have an interesting project? Let\'s discuss how I can help',
+                    email: {
+                        label: 'Email'
+                    }
+                },
+                footer: {
+                    copyright: '© 2026 Aditya Novan Firmansyah | Crafted with care'
+                }
+            },
+            pt: {
+                nav: {
+                    logo: 'Meu Portfólio',
+                    home: 'Início',
+                    about: 'Sobre',
+                    skills: 'Habilidades',
+                    projects: 'Projetos',
+                    contact: 'Contato'
+                },
+                hero: {
+                    greeting: 'Olá, Eu sou',
+                    subtitle: 'Engenheiro Frontend criando experiências web bonitas e interativas',
+                    viewProjects: 'Ver Projetos',
+                    contactMe: 'Entre em Contato'
+                },
+                about: {
+                    title: 'Sobre Mim',
+                    description1: 'Sou um Engenheiro Frontend apaixonado por criar experiências web envolventes e fáceis de usar. Com experiência em várias tecnologias modernas, sempre me esforço para entregar as melhores soluções.',
+                    description2: 'Acredito que um bom design e código limpo são fundamentais para criar aplicações web bem-sucedidas.',
+                    stats: {
+                        experience: 'Anos de Experiência',
+                        projects: 'Projetos Concluídos',
+                        clients: 'Clientes Satisfeitos',
+                        dedication: 'Dedicação'
+                    }
+                },
+                skills: {
+                    title: 'Habilidades & Tecnologia',
+                    frontend: {
+                        title: 'Frontend'
+                    },
+                    styling: {
+                        title: 'Estilo'
+                    },
+                    tools: {
+                        title: 'Ferramentas'
+                    }
+                },
+                projects: {
+                    title: 'Projetos',
+                    badge: {
+                        live: 'AO VIVO',
+                        private: 'PRIVADO'
+                    },
+                    waxpress: {
+                        description: 'A melhor plataforma de Marketing do WhatsApp para aumentar vendas e engajamento com recursos avançados de conectividade do WhatsApp'
+                    },
+                    spanishtalking: {
+                        description: 'Plataforma de aprendizado de espanhol online com materiais interativos e abrangentes para todos os níveis'
+                    },
+                    quickchat: {
+                        description: 'Plataforma de suporte ao cliente em tempo real conectando clientes com provedores de serviços diretamente através de chat'
+                    },
+                    visitWebsite: 'Visitar Site',
+                    viewMore: 'Ver Mais'
+                },
+                contact: {
+                    title: 'Vamos Trabalhar Juntos',
+                    subtitle: 'Tem um projeto interessante? Vamos discutir como posso ajudar',
+                    email: {
+                        label: 'E-mail'
+                    }
+                },
+                footer: {
+                    copyright: '© 2026 Aditya Novan Firmansyah | Criado com cuidado'
+                }
+            }
+        };
+
+        // Language Management
+        let currentLanguage = localStorage.getItem('preferredLanguage') || 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            updateContent();
+            updateLanguageDisplay();
+            
+            // Close all menus
+            document.getElementById('mobile-menu').classList.add('hidden');
+            document.getElementById('mobile-lang-menu').classList.add('hidden');
+            document.getElementById('lang-menu').classList.add('hidden');
+        }
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const keys = element.getAttribute('data-i18n').split('.');
+                let translation = translations[currentLanguage];
+                
+                for (const key of keys) {
+                    translation = translation[key];
+                }
+                
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = currentLanguage;
+        }
+
+        function updateLanguageDisplay() {
+            const langCodes = {
+                'id': 'ID',
+                'en': 'EN',
+                'pt': 'PT'
+            };
+            document.getElementById('current-lang').textContent = langCodes[currentLanguage];
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateContent();
+            updateLanguageDisplay();
+        });
+
+        // Language toggle functionality
+        document.getElementById('lang-toggle').addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.getElementById('lang-menu').classList.toggle('hidden');
+        });
+
+        document.getElementById('lang-toggle-mobile').addEventListener('click', (e) => {
+            e.stopPropagation();
+            const mobileLangMenu = document.getElementById('mobile-lang-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            // Tutup menu navigasi jika terbuka
+            mobileMenu.classList.add('hidden');
+            // Toggle menu bahasa
+            mobileLangMenu.classList.toggle('hidden');
+        });
+
+        // Close language menu when clicking outside
+        document.addEventListener('click', () => {
+            document.getElementById('lang-menu').classList.add('hidden');
+        });
+
         // Modal functions
-        function openModal(imageSrc, title, description) {
+        function openModal(imageSrc, title) {
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
             const modalTitle = document.getElementById('modalTitle');
@@ -489,6 +817,10 @@
             
             modalImage.src = imageSrc;
             modalTitle.textContent = title;
+            
+            // Get translated description
+            const projectKey = title.toLowerCase().replace(/\s+/g, '');
+            const description = translations[currentLanguage].projects[projectKey]?.description || '';
             modalDescription.textContent = description;
             
             modal.classList.remove('hidden');
@@ -511,8 +843,12 @@
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLangMenu = document.getElementById('mobile-lang-menu');
 
         mobileMenuBtn.addEventListener('click', () => {
+            // Tutup menu bahasa jika terbuka
+            mobileLangMenu.classList.add('hidden');
+            // Toggle menu navigasi
             mobileMenu.classList.toggle('hidden');
         });
 
