@@ -23,6 +23,93 @@
             }
         }
     </script>
+    
+    <!-- Security Script - Anti Inspect Element -->
+    <script>
+        // Disable right-click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        
+        // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
+        document.onkeydown = function(e) {
+            // F12
+            if(e.keyCode == 123) {
+                return false;
+            }
+            // Ctrl+Shift+I
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                return false;
+            }
+            // Ctrl+Shift+J
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                return false;
+            }
+            // Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+                return false;
+            }
+            // Ctrl+U (View Source)
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                return false;
+            }
+            // Ctrl+S (Save Page)
+            if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) {
+                return false;
+            }
+        }
+        
+        // Detect DevTools
+        (function() {
+            const threshold = 160;
+            const detectDevTools = () => {
+                if(window.outerWidth - window.innerWidth > threshold || 
+                   window.outerHeight - window.innerHeight > threshold) {
+                    document.body.innerHTML = '';
+                    window.location.href = 'about:blank';
+                }
+            }
+            
+            setInterval(detectDevTools, 1000);
+            window.addEventListener('resize', detectDevTools);
+        })();
+        
+        // Disable text selection
+        document.onselectstart = function() {
+            return false;
+        }
+        
+        // Disable copy
+        document.oncopy = function() {
+            return false;
+        }
+        
+        // Clear console periodically
+        setInterval(function() {
+            console.clear();
+        }, 1000);
+        
+        // Anti-debugging
+        (function() {
+            function detectDevTools(allow) {
+                if(isNaN(+allow)) allow = 100;
+                var start = +new Date();
+                debugger;
+                var end = +new Date();
+                if(isNaN(start) || isNaN(end) || end - start > allow) {
+                    document.body.innerHTML = '';
+                }
+            }
+            if(window.attachEvent) {
+                if(document.readyState === "complete" || document.readyState === "interactive") {
+                    detectDevTools();
+                    window.attachEvent('onload', detectDevTools);
+                    window.attachEvent('onresize', detectDevTools);
+                }
+            } else {
+                window.addEventListener('load', detectDevTools);
+                window.addEventListener('resize', detectDevTools);
+            }
+        })();
+    </script>
     <style>
         /* Prinsip Warna 60-30-10:
            60% - Putih tulang/cream (background dominan)
@@ -70,6 +157,33 @@
             .gradient-text {
                 color: #6B8E4E;
                 -webkit-text-fill-color: #6B8E4E;
+            }
+        }
+    </style>
+    
+    <!-- Additional Security CSS -->
+    <style>
+        /* Disable text selection visually */
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+        
+        /* Re-enable for input fields */
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+        
+        /* Hide scrollbar when DevTools might be open */
+        @media screen and (max-height: 600px) {
+            body {
+                display: none !important;
             }
         }
     </style>
@@ -465,7 +579,7 @@
             </p>
             <!-- 30% sage colored cards -->
             <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <a href="mailto:adityanovanfirmansyah@gmail.com" class="bg-gradient-to-br from-[#E8EFE0] to-[#D4E2C8] p-6 rounded-2xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl border border-[#B8C9A8]">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=adityanovanfirmansyah@gmail.com&su=Halo%20dari%20Portfolio%20Website&body=Hi%20Aditya,%0A%0ASaya%20tertarik%20untuk%20berdiskusi%20tentang%20..." target="_blank" rel="noopener noreferrer" class="bg-gradient-to-br from-[#E8EFE0] to-[#D4E2C8] p-6 rounded-2xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl border border-[#B8C9A8]">
                     <div class="mb-3">
                         <svg class="w-12 h-12 mx-auto" fill="none" stroke="#6B8E4E" viewBox="0 0 24 24" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -896,6 +1010,93 @@
             section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
             observer.observe(section);
         });
+        
+        // Additional Security Measures
+        (function() {
+            'use strict';
+            
+            // Prevent dragging
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+            });
+            
+            // Prevent printing
+            window.addEventListener('beforeprint', function(e) {
+                document.body.style.display = 'none';
+            });
+            
+            window.addEventListener('afterprint', function(e) {
+                document.body.style.display = 'block';
+            });
+            
+            // Monitor console usage
+            const devtools = {
+                isOpen: false,
+                orientation: undefined
+            };
+            
+            const threshold = 160;
+            
+            const emitEvent = (isOpen, orientation) => {
+                if (isOpen) {
+                    window.location.replace('about:blank');
+                }
+            };
+            
+            setInterval(() => {
+                const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+                const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+                const orientation = widthThreshold ? 'vertical' : 'horizontal';
+                
+                if (!(heightThreshold && widthThreshold) &&
+                    ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)) {
+                    if (!devtools.isOpen || devtools.orientation !== orientation) {
+                        emitEvent(true, orientation);
+                    }
+                    devtools.isOpen = true;
+                    devtools.orientation = orientation;
+                } else {
+                    if (devtools.isOpen) {
+                        emitEvent(false, undefined);
+                    }
+                    devtools.isOpen = false;
+                    devtools.orientation = undefined;
+                }
+            }, 500);
+            
+            // Obfuscate page content on visibility change
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    console.clear();
+                }
+            });
+            
+            // Prevent iframe embedding
+            if (window.top !== window.self) {
+                window.top.location = window.self.location;
+            }
+            
+            // Detect Chrome DevTools
+            const element = new Image();
+            Object.defineProperty(element, 'id', {
+                get: function() {
+                    window.location.replace('about:blank');
+                }
+            });
+            
+            // Disable common developer shortcuts
+            window.addEventListener('keydown', function(e) {
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key)) ||
+                    (e.ctrlKey && ['U', 'S'].includes(e.key)) ||
+                    (e.metaKey && e.altKey && ['I', 'J', 'C'].includes(e.key))) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }, true);
+            
+        })();
     </script>
 </body>
 </html>
